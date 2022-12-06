@@ -1,0 +1,25 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Pokedex: React.FC = () => {
+  const [pokemons, setPokemons] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+      setPokemons(response.data.results);
+    };
+
+    fetchPokemons();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedPokemon) return;
+
+    const fetchPokemon = async () => {
+      const response = await axios.get(selectedPokemon.url);
+      setSelectedPokemon(response.data);
+    };
+
+    fetch
