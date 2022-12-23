@@ -1,0 +1,16 @@
+import React from 'react';
+
+function PokemonCard(props) {
+  const pokemon = props.pokemon;
+  const type = pokemon.types[0].type.name;
+
+  return (
+    <div className={`pokemon-card ${type}`}>
+      <h2>{pokemon.name}</h2>
+      <img src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`} alt={pokemon.name} />
+      <p>Type: {type}</p>
+    </div>
+  );
+}
+
+export default PokemonCard;
